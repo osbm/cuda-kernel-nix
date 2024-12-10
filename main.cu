@@ -1,16 +1,13 @@
-#include <iostream>
+#include <stdio.h>
+#include "cuda.h"
+extern "C"
 
-int main()
-{
-        int run_version, driver_version;
-        std::cout<< "Return Code Runtime Version: ";
-        std::cout<<cudaRuntimeGetVersion(&run_version);
-        std::cout<<"\nReturn Code Driver Version: ";
-        std::cout<<cudaDriverGetVersion(&driver_version);
-        std::cout << "\nRuntime Version: ";
-        std::cout << run_version;
-        std::cout << "\n Driver Version: ";
-        std::cout << driver_version;
-        return 0;
+void checkGpuMem() {
+    float free_m, total_m, used_m;
+    size_t free_t,total_t;
+    cudaMemGetInfo(&free_t,&total_t);
+    free_m =(uint)free_t/1048576.0 ;
+    total_m=(uint)total_t/1048576.0;
+    used_m=total_m-free_m;
+    printf("GPU memory usage: used = %f, free = %f MB, total = %f MB\n",used_m,free_m,total_m);
 }
-
