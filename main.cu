@@ -11,3 +11,8 @@ void checkGpuMem() {
     used_m=total_m-free_m;
     printf("GPU memory usage: used = %f, free = %f MB, total = %f MB\n",used_m,free_m,total_m);
 }
+
+int main() {
+    checkGpuMem();
+    return 0;
+}
